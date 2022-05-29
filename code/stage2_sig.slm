@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#SBATCH -p amdsmall
+#SBATCH --nodes=1
+#SBATCH --time=36:00:00
+#SBATCH --ntasks-per-node=10
+#SBATCH --mem=90g
+#SBATCH --mail-type=ALL  
+#SBATCH --mail-user=he000176@umn.edu 
+
+
+cd ~/deepRIV/UKB/code/
+
+module load R/3.3.3
+conda activate tcn
+
+python3 hdl_stage2_sig_0.py &
+python3 hdl_stage2_sig_1.py &
+python3 hdl_stage2_sig_2.py &
+python3 hdl_stage2_sig_3.py &
+python3 hdl_stage2_sig_4.py &
+python3 hdl_stage2_sig_5.py &
+python3 hdl_stage2_sig_6.py &
+wait
+
+module purge
